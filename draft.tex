@@ -1,0 +1,1217 @@
+%% Author: Nima Poshtiban
+%% ORCID: 0009-0004-8338-4958
+%% This is a skeleton file demonstrating the advanced use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE Computer
+%% Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+% IEEEtran V1.7 and later provides for these CLASSINPUT macros to allow the
+% user to reprogram some IEEEtran.cls defaults if needed. These settings
+% override the internal defaults of IEEEtran.cls regardless of which class
+% options are used. Do not use these unless you have good reason to do so as
+% they can result in nonIEEE compliant documents. User beware. ;)
+%
+\newcommand{\CLASSINPUTbaselinestretch}{1.0} % baselinestretch
+\newcommand{\CLASSINPUTinnersidemargin}{1in} % inner side margin
+%\newcommand{\CLASSINPUToutersidemargin}{1in} % outer side margin
+\newcommand{\CLASSINPUTtoptextmargin}{1in}   % top text margin
+\newcommand{\CLASSINPUTbottomtextmargin}{1in}% bottom text margin
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+\usepackage{enumitem}
+\setlist[itemize]{align=parleft,left=0pt}
+\setlist[itemize]{align=parleft,left=0pt}
+\usepackage[utf8]{inputenc}
+\usepackage{calligra}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{syntax}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{nameref}
+\usepackage{babel}
+\usepackage[allbordercolors=white]{hyperref}
+\usepackage{subfiles}
+\usepackage{mfirstuc}
+\usepackage{glossaries}
+\usepackage{float}
+%Includes "References" in the table of contents
+\usepackage[nottoc]{tocbibind}
+\usepackage{subfiles} % Best loaded last in the preamble
+\usepackage[capitalize]{cleveref}
+
+\hypersetup{
+	citecolor=black,
+	citebordercolor=white,
+	linkbordercolor=white,
+	runbordercolor=white,
+	linkcolor=black,
+}
+\providecommand{\keywords}[1]
+{
+	\small
+	\textbf{\textit{Keywords---}} #1
+}
+
+
+\newacronym{ZB}{ZB}{Zigbee Alliance}
+\newacronym{IETF}{IETF}{The Internet Engineering Task Force}
+\newacronym{6LoWPAN}{6LoWPAN}{IPv6 over Low power Wireless Personal Area Network}
+\newacronym{CoAP}{CoAP}{Constrained Application Protocol}
+\newacronym{DTLS}{DTLS}{Datagram Transport Layer Security}
+\newacronym{API}{API}{Application Programming Interface}
+
+\author{\fontfamily{calligra}\selectfont Nima Poshtiban}
+\date{\today}
+\title{\textbf{A Survey of Applications of IoT in E-Commerce}}
+
+
+%
+
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+% For Computer Society journals, IEEEtran defaults to the use of
+% Palatino/Palladio as is done in IEEE Computer Society journals.
+% To go back to Times Roman, you can use this code:
+%\renewcommand{\rmdefault}{ptm}\selectfont
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+% The IEEE Computer Society needs nocompress option
+% requires cite.sty v4.0 or later (November 2003)
+\usepackage[nocompress]{cite}
+\else
+% normal IEEE
+\usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+% \usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../pdf/}{../jpeg/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+% or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+% will default to the driver specified in the system graphics.cfg if no
+% driver is specified.
+% \usepackage[dvips]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../eps/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at:
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%\usepackage{acronym}
+% acronym.sty was written by Tobias Oetiker. This package provides tools for
+% managing documents with large numbers of acronyms. (You don't *have* to
+% use this package - unless you have a lot of acronyms, you may feel that
+% such package management of them is bit of an overkill.)
+% Do note that the acronym environment (which lists acronyms) will have a
+% problem when used under IEEEtran.cls because acronym.sty relies on the
+% description list environment - which IEEEtran.cls has customized for
+% producing IEEE style lists. A workaround is to declared the longest
+% label width via the IEEEtran.cls \IEEEiedlistdecl global control:
+%
+% \renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelwidth{SONET}}
+% \begin{acronym}
+	%
+	% \end{acronym}
+% \renewcommand{\IEEEiedlistdecl}{\relax}% remember to reset \IEEEiedlistdecl
+%
+% instead of using the acronym environment's optional argument.
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/acronym
+
+
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/pkg/mdwtools
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/pkg/eqparbox
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+	% LaTeX2e). It also provides a command:
+	%\fnbelowfloat
+	% to enable the placement of footnotes below bottom floats (the standard
+	% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+	% which rewrites many portions of the LaTeX2e float routines. It may not work
+	% with other packages that modify the LaTeX2e float routines. The latest
+	% version and documentation can be obtained at:
+	% http://www.ctan.org/pkg/stfloats
+	% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+	% \baselineskip to stretch. Authors submitting work to the IEEE should note
+	% that the IEEE rarely uses double column equations and that authors should try
+	% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+	% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+	% such ways.
+	% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+	% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+	% of both fixltx2e and stfloats:
+	%
+	% \usepackage{dblfloatfix}
+	% The latest version can be found at:
+	% http://www.ctan.org/pkg/dblfloatfix
+
+
+	%\ifCLASSOPTIONcaptionsoff
+	%  \usepackage[nomarkers]{endfloat}
+	% \let\MYoriglatexcaption\caption
+	% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+	%\fi
+	% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and
+	% Axel Sommerfeldt. This package may be useful when used in conjunction with
+	% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+	% submissions have lists of figures/tables at the end of the paper and that
+	% figures/tables without any captions are placed on a page by themselves at
+	% the end of the document. If needed, the draftcls IEEEtran class option or
+	% \CLASSINPUTbaselinestretch interface can be used to increase the line
+	% spacing as well. Be sure and use the nomarkers option of endfloat to
+	% prevent endfloat from "marking" where the figures would have been placed
+	% in the text. The two hack lines of code above are a slight modification of
+	% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+	% the full captions always appear in the list of figures/tables - even if
+	% the user used the short optional argument of \caption[]{}.
+	% IEEE papers do not typically make use of \caption[]'s optional argument,
+	% so this should not be an issue. A similar trick can be used to disable
+	% captions of packages such as subfig.sty that lack options to turn off
+	% the subcaptions:
+	% For subfig.sty:
+	% \let\MYorigsubfloat\subfloat
+	% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+	% However, the above trick will not work if both optional arguments of
+	% the \subfloat command are used. Furthermore, there needs to be a
+	% description of each subfigure *somewhere* and endfloat does not add
+	% subfigure captions to its list of figures. Thus, the best approach is to
+	% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+	% and instead reference/explain all the subfigures within the main caption.
+	% The latest version of endfloat.sty and its documentation can obtained at:
+	% http://www.ctan.org/pkg/endfloat
+	%
+	% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+	% later in the document, say, to conditionally put the References on a
+	% page by themselves.
+
+
+
+
+
+	% *** PDF, URL AND HYPERLINK PACKAGES ***
+	%
+	%\usepackage{url}
+	% url.sty was written by Donald Arseneau. It provides better support for
+	% handling and breaking URLs. url.sty is already installed on most LaTeX
+	% systems. The latest version and documentation can be obtained at:
+	% http://www.ctan.org/pkg/url
+	% Basically, \url{my_url_here}.
+
+
+	% NOTE: PDF thumbnail features are not required in IEEE papers
+	%       and their use requires extra complexity and work.
+	%\ifCLASSINFOpdf
+	%  \usepackage[pdftex]{thumbpdf}
+	%\else
+	%  \usepackage[dvips]{thumbpdf}
+	%\fi
+	% thumbpdf.sty and its companion Perl utility were written by Heiko Oberdiek.
+	% It allows the user a way to produce PDF documents that contain fancy
+	% thumbnail images of each of the pages (which tools like acrobat reader can
+	% utilize). This is possible even when using dvi->ps->pdf workflow if the
+	% correct thumbpdf driver options are used. thumbpdf.sty incorporates the
+	% file containing the PDF thumbnail information (filename.tpm is used with
+	% dvips, filename.tpt is used with pdftex, where filename is the base name of
+	% your tex document) into the final ps or pdf output document. An external
+	% utility, the thumbpdf *Perl script* is needed to make these .tpm or .tpt
+	% thumbnail files from a .ps or .pdf version of the document (which obviously
+	% does not yet contain pdf thumbnails). Thus, one does a:
+	%
+	% thumbpdf filename.pdf
+	%
+	% to make a filename.tpt, and:
+	%
+	% thumbpdf --mode dvips filename.ps
+	%
+	% to make a filename.tpm which will then be loaded into the document by
+	% thumbpdf.sty the NEXT time the document is compiled (by pdflatex or
+	% latex->dvips->ps2pdf). Users must be careful to regenerate the .tpt and/or
+	% .tpm files if the main document changes and then to recompile the
+	% document to incorporate the revised thumbnails to ensure that thumbnails
+	% match the actual pages. It is easy to forget to do this!
+	%
+	% Unix systems come with a Perl interpreter. However, MS Windows users
+	% will usually have to install a Perl interpreter so that the thumbpdf
+	% script can be run. The Ghostscript PS/PDF interpreter is also required.
+	% See the thumbpdf docs for details. The latest version and documentation
+	% can be obtained at.
+	% http://www.ctan.org/pkg/thumbpdf
+
+
+	% NOTE: PDF hyperlink and bookmark features are not required in IEEE
+	%       papers and their use requires extra complexity and work.
+	% *** IF USING HYPERREF BE SURE AND CHANGE THE EXAMPLE PDF ***
+	% *** TITLE/SUBJECT/AUTHOR/KEYWORDS INFO BELOW!!           ***
+	\newcommand\MYhyperrefoptions{bookmarks=true,bookmarksnumbered=true,
+		pdfpagemode={UseOutlines},plainpages=false,pdfpagelabels=true,
+		colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black},
+		pdftitle={A survey of applications of IoT in E-Commerce},%<!CHANGE!
+		pdfsubject={IoT in E-Commerce},%<!CHANGE!
+		pdfauthor={Nima Poshtiban},%<!CHANGE!
+		pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
+			template}}%<^!CHANGE!
+	%\ifCLASSINFOpdf
+	%\usepackage[\MYhyperrefoptions,pdftex]{hyperref}
+	%\else
+	%\usepackage[\MYhyperrefoptions,breaklinks=true,dvips]{hyperref}
+	%\usepackage{breakurl}
+	%\fi
+	% One significant drawback of using hyperref under DVI output is that the
+	% LaTeX compiler cannot break URLs across lines or pages as can be done
+	% under pdfLaTeX's PDF output via the hyperref pdftex driver. This is
+	% probably the single most important capability distinction between the
+	% DVI and PDF output. Perhaps surprisingly, all the other PDF features
+	% (PDF bookmarks, thumbnails, etc.) can be preserved in
+	% .tex->.dvi->.ps->.pdf workflow if the respective packages/scripts are
+	% loaded/invoked with the correct driver options (dvips, etc.).
+	% As most IEEE papers use URLs sparingly (mainly in the references), this
+	% may not be as big an issue as with other publications.
+	%
+	% That said, Vilar Camara Neto created his breakurl.sty package which
+	% permits hyperref to easily break URLs even in dvi mode.
+	% Note that breakurl, unlike most other packages, must be loaded
+	% AFTER hyperref. The latest version of breakurl and its documentation can
+	% be obtained at:
+	% http://www.ctan.org/pkg/breakurl
+	% breakurl.sty is not for use under pdflatex pdf mode.
+	%
+	% The advanced features offer by hyperref.sty are not required for IEEE
+	% submission, so users should weigh these features against the added
+	% complexity of use.
+	% The package options above demonstrate how to enable PDF bookmarks
+	% (a type of table of contents viewable in Acrobat Reader) as well as
+	% PDF document information (title, subject, author and keywords) that is
+	% viewable in Acrobat reader's Document_Properties menu. PDF document
+	% information is also used extensively to automate the cataloging of PDF
+	% documents. The above set of options ensures that hyperlinks will not be
+	% colored in the text and thus will not be visible in the printed page,
+	% but will be active on "mouse over". USING COLORS OR OTHER HIGHLIGHTING
+	% OF HYPERLINKS CAN RESULT IN DOCUMENT REJECTION BY THE IEEE, especially if
+	% these appear on the "printed" page. IF IN DOUBT, ASK THE RELEVANT
+	% SUBMISSION EDITOR. You may need to add the option hypertexnames=false if
+	% you used duplicate equation numbers, etc., but this should not be needed
+	% in normal IEEE work.
+	% The latest version of hyperref and its documentation can be obtained at:
+	% http://www.ctan.org/pkg/hyperref
+
+
+
+
+
+	% *** Do not adjust lengths that control margins, column widths, etc. ***
+	% *** Do not use packages that alter fonts (such as pslatex).         ***
+	% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+	% (Unless specifically asked to do so by the journal or conference you plan
+	% to submit to, of course. )
+
+
+	% correct bad hyphenation here
+	\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+	\begin{document}
+
+		%
+		% paper title
+		% Titles are generally capitalized except for words such as a, an, and, as,
+		% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+		% not capitalized unless they are the first or last word of the title.
+		% Linebreaks \\ can be used within to get better formatting as desired.
+		% Do not put math or special symbols in the title.
+		\title{A Survey of Applications of IoT in E-Commerce}
+		%
+		%
+		% author names and IEEE memberships
+		% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+		% a structure at a ~ so this keeps an author's name from being broken across
+		% two lines.
+		% use \thanks{} to gain access to the first footnote area
+		% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+		% was not built to handle multiple paragraphs
+		%
+		%
+		%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+		% lists the Computer Society journals use for "first footnote" author
+		% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+		% for each affiliation group. When not in compsoc mode,
+		% \IEEEcompsocitemizethanks becomes like \thanks and
+		% \IEEEcompsocthanksitem becomes a line break with idention. This
+		% facilitates dual compilation, although admittedly the differences in the
+		% desired content of \author between the different types of papers makes a
+		% one-size-fits-all approach a daunting prospect. For instance, compsoc
+		% journal papers have the author affiliations above the "Manuscript
+		% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+		\author{Nima~Poshtiban}
+				% note need leading \protect in front of \\ to get a newline within \thanks as
+				% \\ is fragile and will error, could use \hfil\break instead.
+
+
+		% note the % following the last \IEEEmembership and also \thanks -
+		% these prevent an unwanted space from occurring between the last author name
+		% and the end of the author line. i.e., if you had this:
+		%
+		% \author{....lastname \thanks{...} \thanks{...} }
+		%                     ^------------^------------^----Do not want these spaces!
+		%
+		% a space would be appended to the last name and could cause every name on that
+		% line to be shifted left slightly. This is one of those "LaTeX things". For
+		% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+		% "AB" then you have to do: "\textbf{A}\textbf{B}"
+		% \thanks is no different in this regard, so shield the last } of each \thanks
+	% that ends a line with a % and do not let a space in before the next \thanks.
+	% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+	% you are supposed to have spaces between the names. For what it is worth,
+	% this is a minor point as most people would not even notice if the said evil
+	% space somehow managed to creep in.
+
+
+
+	% The paper headers
+	%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+	%{Shell \MakeLowercase{\textit{et al.}}: Bare Advanced Demo of IEEEtran.cls for IEEE Computer Society Journals}
+	% The only time the second header will appear is for the odd numbered pages
+	% after the title page when using the twoside option.
+	%
+	% *** Note that you probably will NOT want to include the author's ***
+	% *** name in the headers of peer review papers.                   ***
+	% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+	% you desire.
+
+
+
+	% The publisher's ID mark at the bottom of the page is less important with
+	% Computer Society journal papers as those publications place the marks
+	% outside of the main text columns and, therefore, unlike regular IEEE
+	% journals, the available text space is not reduced by their presence.
+	% If you want to put a publisher's ID mark on the page you can do it like
+	% this:
+	%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+	% or like this to get the Computer Society new two part style.
+	%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
+		%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+	% Remember, if you use this you must call \IEEEpubidadjcol in the second
+	% column for its text to clear the IEEEpubid mark (Computer Society journal
+	% papers don't need this extra clearance.)
+
+
+
+	% use for special paper notices
+	%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+	% for Computer Society papers, we must declare the abstract and index terms
+	% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+	% command as these need to go into the title area created by \maketitle.
+	% As a general rule, do not put math, special symbols or citations
+	% in the abstract or keywords.
+	\IEEEtitleabstractindextext{%
+
+			\subfile{abstract.tex}
+
+
+		% Note that keywords are not normally used for peerreview papers.
+		\begin{IEEEkeywords}
+			IoT, E-Commerce, application, things, smart
+	\end{IEEEkeywords}}
+
+
+	% make the title area
+	\maketitle
+
+
+	% To allow for easy dual compilation without having to reenter the
+	% abstract/keywords data, the \IEEEtitleabstractindextext text will
+	% not be used in maketitle, but will appear (i.e., to be "transported")
+	% here as \IEEEdisplaynontitleabstractindextext when compsoc mode
+	% is not selected <OR> if conference mode is selected - because compsoc
+	% conference papers position the abstract like regular (non-compsoc)
+	% papers do!
+	\IEEEdisplaynontitleabstractindextext
+	% \IEEEdisplaynontitleabstractindextext has no effect when using
+	% compsoc under a non-conference mode.
+
+
+	% For peer review papers, you can put extra information on the cover
+	% page as needed:
+	% \ifCLASSOPTIONpeerreview
+	% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+	% \fi
+	%
+	% For peerreview papers, this IEEEtran command inserts a page break and
+	% creates the second title. It will be ignored for other modes.
+	\IEEEpeerreviewmaketitle
+
+
+	\ifCLASSOPTIONcompsoc
+	\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+	\else
+	\section{Introduction}
+	\label{sec:introduction}
+	\fi
+	% Computer Society journal (but not conference!) papers do something unusual
+	% with the very first section heading (almost always called "Introduction").
+	% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+	% this for you, but you can achieve this effect with the provided
+	% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+	% is to refer to the section immediately after \section in the above as
+	% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
+	% The very first letter is a 2 line initial drop letter followed
+	% by the rest of the first word in caps (small caps for compsoc).
+	%
+	% form to use if the first word consists of a single letter:
+	% \IEEEPARstart{A}{demo} file is ....
+	%
+	% form to use if you need the single drop letter followed by
+	% normal text (unknown if ever used by the IEEE):
+	% \IEEEPARstart{A}{}demo file is ....
+	%
+	% Some journals put the first two words in caps:
+	% \IEEEPARstart{T}{his demo} file is ....
+	%
+	% Here we have the typical use of a "T" for an initial drop letter
+	% and "HIS" in caps to complete the first word.
+	\IEEEPARstart{W}{ith} the advent of the Internet, many new electronic-based concepts and technologies came to exist and one of them was \emph{IoT}.
+	First, let's clarify what are  \emph{things}. The \emph{things} that are part of the \emph{Internet of Things} are computing
+	devices(embedded devices\cite{rfc7452}) that understand and react to the environment they reside in.
+	These things are also often referred to as smart objects or smart
+	devices. The lifecycle of a \emph{thing} refers to the operational phases of a thing
+	in the context of a given application or use case. This generic
+	lifecycle applies to very different IoT applications and
+	scenarios(\cref{thinglifecycle}).\cite{rfc8576}
+	\begin{figure}[h]
+		\includegraphics[scale=0.4]{lifecycle}
+		\caption{The Lifecycle of a Thing in the Internet of Things \cite{rfc8576}}
+		\label{thinglifecycle}
+	\end{figure}
+
+
+	\hfill \today
+
+	\section{Preliminary to IoT}
+	The term  "Internet of Things" (IoT) denotes a trend where a large
+	number of \emph{embedded} devices employ communication services offered by Internet protocols\cite{rfc7452}.
+	The concept was first introduced by the United States Massachusetts Institute
+	of Technology in 1999\cite{yu2017research}. At that time it only aimed to realize
+	intelligent merchandise identification and management by
+	Radio Frequency Identification (RFID) technology\cite{yu2017research}. Later, it was proposed at the International Conference on Mobile Computing and Networking in the United States. \emph{Professor Ashton from MIT Auto-ID Center} proposed for the first time in the study of a combination of object coding, RFID, and Internet technology solutions\cite{guo2017research}.\vspace{1cm}
+	\cite{guo2017research}At that time, based on \href{https://en.wikipedia.org/wiki/Radio-frequency_identification}{RFID} technology, EPC standards, and the Internet, by the use of
+	radio frequency identification and wireless communication
+	technology, global goods real-time information sharing
+	Internet was constructed\cite{guo2017research}, which in a nutshell was the mere definition of the "Internet of things".\newline
+	Now the connotation and meaning of the IoT have undergone a lot of changes;
+	from different parts, there are different understandings.
+	The Internet of Things encompasses electronics, communication, and computer science engineering. However, the term "Internet of Things" has been considered a misnomer because devices or smart objects according to \href{https://www.rfc-editor.org/info/rfc7452}{RFC 7452}, do not necessarily need to be connected to the public Internet; they only need to be connected to a network \cite{whatisnetwork} and be individually addressable.
+
+	\subsection{IP-Based IoT Protocols}
+	Nowadays, there exists a multitude of control protocols for IoT. For
+	BAC systems, the ZigBee standard ZB, BACNet , and
+DALI play crucial roles. Recent trends, though, focus on an all-IP
+	approach for system control\cite{rfc8576}. Therefore let's begin to introduce three well-known \textbf{IP-Based} IoT Protocols and Standards and their applications.
+
+	\subsection{\textbf{6LoWPAN}}
+
+	It is designed based on the \href{https://standards.ieee.org/ieee/802.15.4/7029/}{IEEE 802.15.4}\cite{rfc8576}\cite{rfc4944} standard and as the name suggests, it targets low-power personal area network devices. The motivation behind designing this protocol was to apply the Internet Protocol (IP) even to the smallest devices, enabling low-power devices with limited processing capabilities to participate in the Internet of Things.
+	According to \href{https://www.rfc-editor.org/info/rfc4919}{RFC 4919}, the common underlying goal behind 6LoWPAN was to diminish packet overhead,
+	bandwidth consumption, processing requirements, and power
+	consumption. A fragmentation and reassembly adaptation layer must
+	be provided at the layer below IP to meet the needs of specifications of \href{https://www.rfc-editor.org/info/rfc2460}{RFC 2460} (Packet Size Issues)\cite{rfc4919}. Furthermore 6LoWPAN specifies methods for creating IPv6 stateless address auto configuration. Stateless
+	auto configuration (as compared to stateful) is attractive for
+	6LoWPANs, because it reduces the configuration overhead on the
+	hosts which also satisfies the goal of reducing bandwidth consumption. In addition, proper encapsulation, header compression, neighbor discovery, etc have been designed to make adequate IPv6 operation over \href{https://standards.ieee.org/ieee/802.15.4/7029/}{IEEE 802.15.4} based networks possible.
+	6LoWPAN network enables the emerging applications to function in a variety of fields, such as
+	\begin{itemize}
+		\item Agricultural field measurements
+		\item Monitoring structural health of buildings
+		\item Patient health monitoring
+		\item home/industrial automation
+	\end{itemize}
+	\cite{rfc4919}The support for IPv6 over \href{https://standards.ieee.org/ieee/802.15.4/7029/}{IEEE 802.15.4} links enables integration of LoWPANs into the existing IP infrastructure. Also, the large IPv6 address space will meet the requirements of numerous LoWPAN nodes with address assignment using auto-configuration protocols. The 6LoWPAN layer performs header compression, fragmentation and layer 2 forwarding functions to adapt IPv6 packets to the resource constrained LoWPAN networks\cite{rfc4919}.
+	%----- end of 6LoWPAN
+	\subsection{\textbf{CoAP}}\label{coapprotocol}
+	\cite{rfc7252}CoAP is a RESTful protocol
+	for constrained devices that is modeled after HTTP and typically runs
+	over UDP to enable efficient application-level communication for
+	things. The protocol is designed for machine-
+	to-machine (M2M) applications such as smart energy and building
+	automation. CoAP provides a request/response interaction model between
+	application endpoints, supports built-in discovery of services and
+	resources, and includes key concepts of the Web such as URIs and
+	Internet media types.  CoAP is designed to easily interface with HTTP
+	for integration with the Web while meeting specialized requirements
+	such as multicast support, very low overhead, and simplicity for
+	constrained environments.  Unlike HTTP, CoAP deals with these interchanges \textbf{asynchronously} over a
+	datagram-oriented transport such as UDP.  This is done logically
+	using a layer of messages that supports optional reliability (with
+	exponential back-off)\cite{rfc7252}.  CoAP defines four types of messages
+	\begin{itemize}
+		\item Request
+		\begin{enumerate}
+			\item Confirmable
+			\item Non-confirmable
+		\end{enumerate}
+		\item Response
+		\begin{enumerate}
+			\item Acknowledgement
+			\item Reset
+		\end{enumerate}
+
+
+	\end{itemize}
+	\cite{rfc7252}Method Codes and Response Codes included in some of these messages make them carry
+	requests or responses. The basic exchanges of the mentioned types of
+	messages are somewhat orthogonal to the request/response
+	interactions; requests can be carried in Confirmable and Non-
+	confirmable messages, and responses can be carried in these as well
+	as piggybacked in Acknowledgement messages. One could think of CoAP logically as using a two-layer approach, a
+CoAP messaging layer used to deal with UDP and the asynchronous
+	nature of the interactions, and the request/response interactions
+	using Method and Response Codes (see figure \ref{coap}).  CoAP is however a
+	single protocol, with messaging and request/response as just features
+	of the CoAP header\cite{rfc7252}.
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			\draw[dashed] (0,0) rectangle (3,-1);
+			\node[thick] at (3/2,-0.5) {\small{Application Layer}};
+			\draw[dotted,thin] (3/2,-1) -- (3/2,-1.5);
+			\draw[dashed] (0,-1.5) rectangle (3,-2.5);
+			\node[thick] at (3/2,-2) {\small{Requests/Responses}};
+			\draw[dotted,ultra thick] (3,-1.5) -- (3.4,-2.4);
+
+
+			\draw[dashed] (0,-2.5) rectangle (3,-3.5);
+			\node[thick] at (3/2,-3) {\small{Messages}};
+			\draw[dotted,ultra thick] (3,-3.5) -- (3.4, -2.4) ;
+
+			\draw[dotted,thin] (3/2,-3) -- (3/2,-4);
+			\draw[dashed] (0,-4) rectangle (3,-5);
+			\node[thick] at (3/2,-4.5) {\small{UDP}};
+
+			\node[thick,align=right] at (4,-2.5) {CoAP};
+		\end{tikzpicture}
+		\caption{Abstract Layering of CoA}\cite{rfc7252}
+		\label{coap}%---- fix figure ref
+	\end{figure}
+	A list of implementations of CoAP in different programming languages can be found here \href{https://en.wikipedia.org/wiki/Constrained_Application_Protocol}{[implementations of CoAP]}
+	\subsection{\textbf{MQTT}}
+	At the moment the latest version of \emph{MQTT} is \emph{MQTT Version 5.0}.\cite{mqtt} MQTT is a Client Server publish/subscribe messaging transport protocol. It is light weight, open, simple, and designed to be easy to implement. These characteristics make it ideal for use in many situations, including constrained environments such as for communication in Machine to Machine (M2M) and Internet of Things (IoT) contexts where a small code footprint is required and/or network bandwidth is at a premium.
+	The protocol runs over TCP/IP, or over other network protocols that provide ordered, lossless, bi-directional connections. Its features include
+	\begin{itemize}
+		\item Use of the publish/subscribe message pattern which provides one-to-many message distribution and decoupling of applications
+		\item A messaging transport that is agnostic to the content of the payload
+		\item Three qualities of service for message delivery:\\
+	     {\bfseries At most once}, where messages are delivered according to the best efforts of the operating environment. Message loss can occur. This level could be used, for example, with ambient sensor data where it does not matter if an individual reading is lost as the next one will be published soon after.\\
+	      {\bfseries At least once} , where messages are assured to arrive but duplicates can occur.
+		   \\{\bfseries Exactly once} , where messages are assured to arrive exactly once. This level could be used, for example, with billing systems where duplicate or lost messages could lead to incorrect charges being applied.
+
+		\item A small transport overhead and protocol exchanges minimized to reduce network traffic.
+		\item A mechanism to notify interested parties when an abnormal disconnection occurs.
+	\end{itemize}\cite{mqtt}
+	\emph{MQTT} is used in connected car systems for real-time data exchange, including vehicle diagnostics, navigation, and infotainment. Also in medical devices and health monitoring systems, \emph{MQTT} facilitates the real-time transmission of patient data, ensuring timely interventions and improved patient care.
+
+	\section{IoT device Communication Patterns}
+	The communication patterns between IoT devices can be categorized into four patterns
+
+	\subsection{Device-to-Device Communication Pattern}\label{devicetodevicecommunication}
+	In this pattern as the name suggests, two devices independent of
+	manufacturers are desired to communicated directly. Examples of this pattern are fitness equipment, such as heart rate monitors and smart watches. For example, an Apple Watch (Watch OS) communicates directly with an IPhone device(IOS) via Bluetooth or \href{https://standards.ieee.org/ieee/802.11/7028/}{IEEE 802.11(Wireless)}. \cref{d2d} illustrates a communication pattern where two devices
+	developed by different manufacturers are desired to interoperate and
+	communicate directly.\cite{rfc7452}
+	\begin{figure}[h]
+		\includegraphics[scale=0.7]{d2d.png}
+		\caption{Device-to-Device Communication Pattern \cite{rfc7452}}
+		\label{d2d}
+	\end{figure}
+	\subsection{Device-to-Cloud Communication Pattern}\label{devicetocloud}
+	In this pattern a device communicates with a Cloud Service Provider. This Pattern allows an end-to-end IP-based Communication by using protocols such as \href{coapprotocol}{CoAP},DTLS, etc., \cref{d2c-fig} shows an example of this pattern.
+	\begin{figure}[h]
+		\includegraphics[scale=0.7]{d2c.png}
+		\caption{Device-to-Cloud Communication Pattern \cite{rfc7452}}
+		\label{d2c-fig}
+	\end{figure}
+	\subsection{Device-to-Gateway Communication Pattern}\label{devicetogateway}
+	This pattern is very similar to Device-to-Cloud pattern, it is used when a smart device needs to use an specific radio technology
+	such as \href{https://standards.ieee.org/ieee/802.15.4/7029/}{IEEE 802.15.4} or special application layer has to be provided or interoperability is needed with legacy, non-IP-based devices.\cite{rfc7452} Thereby some form of gateway is placed to act as a bridge between the different technologies, thus performing networking and security functionalities.\cite{rfc7452} This communication pattern can frequently be found with smart object
+	deployments that require remote configuration capabilities and real-
+	time interactions. The gateway is thereby assumed to be always
+	connected to the Internet\cite{rfc7452}. \cref{dtc} is a simple example of this pattern
+	\begin{figure}[h]
+		\includegraphics[scale=0.6]{dtc}
+		\caption{Device-to-Gateway Communication Pattern\cite{rfc7452}}
+		\label{dtc}
+	\end{figure}
+	\subsection{Back-End Data Sharing Pattern}\label{backenddatasharing}
+	\cite{rfc7452}The Device-to-Cloud pattern often leads to silos; IoT devices upload
+	data only to a single application service provider.  However, users
+	often demand the ability to export and to analyze data in combination
+	with data from other sources.  Hence, the desire for granting access
+	to the uploaded sensor data to third parties arises.  This design is
+	shown in \cref{back-share}.  This pattern is known from the Web in case of
+	mashups and is, therefore, reapplied to the smart object context.  To
+	offer familiarity for developers, typically a RESTful API design in
+	combination with a federated authentication and authorization
+	technology (like OAuth 2.0 [\href{https://datatracker.ietf.org/doc/html/rfc6749}{RFC6749}]) is reused.  While this offers
+	reuse at the level of building blocks, the entire protocol stack
+	(including the information/data model and RESTful Web APIs) is often
+	\textbf{not standardized}\cite{rfc7452}.
+	\begin{figure}[h]
+		\includegraphics[scale=0.5]{backcsharing.png}
+		\caption{Back-End Data Sharing Pattern\cite{rfc7452}}
+		\label{back-share}
+	\end{figure}
+
+
+	% needed in second column of first page if using \IEEEpubid
+	%\IEEEpubidadjcol
+
+	\section{E-Commerce (EC)}
+	\emph{E-commerce} is referred to as electronic commerce\cite{jain2021overview}.\cite{ecbook2017} It can be defined as digitally enabled commercial transactions between and
+	among organizations and individuals. Digitally enabled transactions include all transactions
+	mediated by digital technology. For the most part, this means transactions that occur
+	over the Internet, the Web, and/or via mobile devices. Commercial transactions involve
+	the exchange of value (e.g., money) across organizational or individual boundaries in
+	return for products and services. E-commerce involves the use of the Internet, the World Wide Web (WWW), and mobile
+	apps and browsers running on mobile devices to transact business. Although the terms
+	Internet and Web are often used interchangeably, they are actually two very different
+	things. The Internet is a worldwide network of computer networks, and the Web is one
+	of the Internet’s most popular services, providing access to billions of web pages.\cite{ecbook2017}
+	There is a common misconception that "E-Commerce is anything digital that a firm does." So it is necessary to introduce another term "E-Business".
+	According to \emph{E-Commerce 2017 Business, Technology, Society} \emph{E-business} can be defined as the digital enabling of transactions and processes within a firm, involving information systems under the control of the firm.\cite{ecbook2017} In another word E-Commerce is a subset of E-Business (\cref{eb}).
+	\begin{figure}[h]
+		\includegraphics[scale=0.1]{ebvsec.jpg}
+		\caption{Components of E-Business}
+		\label{eb}
+	\end{figure}
+	\subsection{Types of E-Commerce}
+	There are a number of different types of E-Commerce and, many different ways to characterize them. In this article I will introduce the three most common types of E-Commerce.
+	\begin{itemize}
+		\item \emph{Business-To-Consumer (B2C) E-Commerce: }\\
+		The most commonly type of E-commerce is business-to-consumer (B2C)
+		E-Commerce, in which online businesses attempt to reach individual consumers. B2C
+		E-Commerce includes purchases of retail goods, travel and other types of services, and
+		online content\cite{ecbook2017}. In short, it means "online businesses selling to individual consumers". The best example of B2C is Amazon.
+		\item \emph{Business-To-Business (B2B) E-Commerce}\\
+		\emph{Business-To-Business (B2B)} includes all electronic products or services transfers between firms. In general
+		producers and traditional industrial wholesale companies use this approach for electronic trading. In simple terms, it means "online businesses selling to other businesses"\cite{ecbook2017}. Microsoft is the best example of B2B.
+		\item \emph{Consumer-To-Consumer (C2C) E-Commerce}\\
+		It encompasses all trade in goods or services electronically between customers.
+		Typically this exchange is done by a third party that offers an online transaction forum\cite{jain2021overview}. In summary "Consumer-to-Consumer (C2C) E-Commerce consumers selling to other consumer".\cite{ecbook2017} eBay is an example of C2C.
+	\end{itemize}
+	In fact the mentioned types exists coincident with each others. For example, eBay acts as third party between sellers and buyers, a seller can be a business selling products to customers, or it can be a person selling a good to another person.
+
+	\section{IoT and E-Commerce}
+	\cite{trevlopoulou2018internet}Two of the most fundamental technologies of the 21\textsuperscript{st} century are the Internet of
+	Things and E-Commerce. These technologies interact with each other to boost their perspectives. On the one hand, IoT interacts with E-Commerce by improving and optimizing its applications while on the other hand, E-Commerce assists IoT in developing new technological strands.\cite{trevlopoulou2018internet}. Applications of \emph{IoT in C2C} are very limited and are mostly considered as \emph{IoT in B2C}. In addition Applications of \emph{IoT in B2B} fall into the scope of E-Business.
+
+	In this section, We begin by illustrating the applications of IoT in B2C E-Commerce.
+	In a B2C market Businesses offer end-customers or individuals with an IoT product. Such as Smart Wearables, Smart House, or Personal Tracking devices. The Business provides services for these IoT gadgets through \emph{Back-End Data Sharing Pattern}(\cref{backenddatasharing}) or \emph{Device-to-Cloud Communication Pattern}(\cref{devicetocloud}) or even \emph{Device-to-Gateway Communication Pattern}(\cref{devicetogateway}).
+	Consider an Apple Watch, it monitors the wearer's health condition saves this data, and sends it to an iPhone device or if equipped with e-sim directly to iCloud, Which then can be used for detecting health issues. This IoT device uses \emph{Back-End Data Sharing Pattern}(\cref{backenddatasharing}) and uses \emph{Device-to-Device Communication Pattern}(\cref{devicetodevicecommunication}) for connecting with an Apple device.
+	\subsection{Smart Home}
+	A smart home consists of sensors, actuators,
+	and network hardware managed by a third-party app (\cref{smarthomepic}). The most clear-cut benefit of setting up a \emph{Smart Home} is facilitating controls over home components and user's convenience.
+	Furthermore, energy waste alleviation, enhanced home security, and accessibility are other advantages of Smart Homes. Using \emph{IoT} devices, such as
+	smart thermostats, smart moisture sensors, and smart lighting sensors, often cooperating with Centralized Control hub(s) lead to minimum energy consumption. Also, smart security devices including motion sensors, surveillance cameras, and automated door locks, monitor home surroundings and report suspicious activities in real time. Users can manipulate home components in addition to, real-time accessibility to home components regardless of their physical location via the home automation system service provider's application. \emph{Samsung SmartThings} can be mentioned as an example of these platforms. It features Voice controls with smart home assistants, with support for Wifi\href{https://datatracker.ietf.org/doc/html/rfc7494}{(IEEE 802.11 )}, Zigbee and Z-Wawe protocols, offering probably the most support for varies smart devices available on the market. Additionally, you can integrate \emph{Google Assistant} and \emph{Amazon Alexa} with the \emph{SmartThings application}. However setting up a Smart house can be costly depending on the level of automation (e.g. Smart Entertainment), also there are some privacy concerns around third-party service providers, regardless of other \emph{IoT} Security issues.It is worthwhile to mention \emph{Smart Workplace} which is very similar to \emph{Smart Home} but with the main purpose of boosting productivity.
+	\begin{figure}[h]
+		\includegraphics[scale=0.2]{SmartHome.png}
+		\caption{Smart home architecture.\cite{smarthomearch}}
+		\label{smarthomepic}
+	\end{figure}
+	\subsection{Smart Health-Care}
+	\emph{Smart} healthcare in the context of the B2C model refers to the use of \emph{IoT} medical devices and technologies to improve the quality and efficiency of healthcare delivery. It involves the integration of various digital technologies and \emph{IoT} devices to enable the collection, analysis, and sharing of healthcare data through the cloud(e.g. HCA Healthcare). The smart healthcare system is envisioned to deal with emergency situations and handle them in real time\cite{ISRAVEL202061}. Elderly patients can benefit most, by having independent living with minimal need for assistance from nurses or caretakers.
+	Smart healthcare facilitates immediate access to doctors, nurses, treatment, and medications(\cref{smarthealth}).
+	\begin{figure}[h]
+		\includegraphics[scale=0.6]{smarthealthcare.jpg}
+		\caption{Components of Smart healthcare system}
+		\label{smarthealth}
+	\end{figure}
+	\subsection{Automotive IoT}
+	In \emph{Automotive IoT} IoT devices, which are connected to the cloud, analyze car sensors to collect data about the physical and psychological conditions of the driver, providing a better driving experience. In the context of B2C, autonomous vehicles are the most significant example of IoT in \emph{Automotive IoT}. More advanced applications of IoT are out of scope the of E-Commerce and are placed in E-Business scope(e.g. CV2X).
+
+
+
+	% An example of a floating figure using the graphicx package.
+	% Note that \label must occur AFTER (or within) \caption.
+	% For figures, \caption should occur after the \includegraphics.
+	% Note that IEEEtran v1.7 and later has special internal code that
+	% is designed to preserve the operation of \label within \caption
+	% even when the captionsoff option is in effect. However, because
+	% of issues like this, it may be the safest practice to put all your
+	% \label just after \caption rather than within \caption{}.
+	%
+	% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+	% option should be used if it is desired that the figures are to be
+	% displayed while in draft mode.
+	%
+	%\begin{figure}[!t]
+	%\centering
+	%\includegraphics[width=2.5in]{myfigure}
+	% where an .eps filename suffix will be assumed under latex,
+	% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+	% via \DeclareGraphicsExtensions.
+	%\caption{Simulation results for the network.}
+	%\label{fig_sim}
+	%\end{figure}
+
+	% Note that the IEEE typically puts floats only at the top, even when this
+	% results in a large percentage of a column being occupied by floats.
+	% However, the Computer Society has been known to put floats at the bottom.
+
+
+	% An example of a double column floating figure using two subfigures.
+	% (The subfig.sty package must be loaded for this to work.)
+	% The subfigure \label commands are set within each subfloat command,
+	% and the \label for the overall figure must come after \caption.
+	% \hfil is used as a separator to get equal spacing.
+	% Watch out that the combined width of all the subfigures on a
+	% line do not exceed the text width or a line break will occur.
+	%
+	%\begin{figure*}[!t]
+	%\centering
+	%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+		%\label{fig_first_case}}
+	%\hfil
+	%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+		%\label{fig_second_case}}
+	%\caption{Simulation results for the network.}
+	%\label{fig_sim}
+	%\end{figure*}
+	%
+	% Note that often IEEE papers with subfigures do not employ subfigure
+	% captions (using the optional argument to \subfloat[]), but instead will
+	% reference/describe all of them (a), (b), etc., within the main caption.
+	% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+	% labels, the optional argument to \subfloat must be present. If a
+	% subcaption is not desired, just leave its contents blank,
+	% e.g., \subfloat[].
+
+
+	% An example of a floating table. Note that, for IEEE style tables, the
+	% \caption command should come BEFORE the table and, given that table
+	% captions serve much like titles, are usually capitalized except for words
+	% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+	% and up, which are usually not capitalized unless they are the first or
+	% last word of the caption. Table text will default to \footnotesize as
+	% the IEEE normally uses this smaller font for tables.
+	% The \label must come after \caption as always.
+	%
+	%\begin{table}[!t]
+	%% increase table row spacing, adjust to taste
+	%\renewcommand{\arraystretch}{1.3}
+	% if using array.sty, it might be a good idea to tweak the value of
+	% \extrarowheight as needed to properly center the text within the cells
+	%\caption{An Example of a Table}
+	%\label{table_example}
+	%\centering
+	%% Some packages, such as MDW tools, offer better commands for making tables
+	%% than the plain LaTeX2e tabular which is used here.
+	%\begin{tabular}{|c||c|}
+	%\hline
+	%One & Two\\
+	%\hline
+	%Three & Four\\
+	%\hline
+	%\end{tabular}
+	%\end{table}
+
+
+	% Note that the IEEE does not put floats in the very first column
+	% - or typically anywhere on the first page for that matter. Also,
+	% in-text middle ("here") positioning is typically not used, but it
+	% is allowed and encouraged for Computer Society conferences (but
+	% not Computer Society journals). Most IEEE journals/conferences use
+	% top floats exclusively.
+	% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+	% footnotes above bottom floats. This can be corrected via the
+	% \fnbelowfloat command of the stfloats package.
+
+
+
+
+	\section{Conclusion}
+	After searching through many articles about "IoT applications in E-Commerce", I found out that many of them have a common error, they confuse \emph{E-Business} with \emph{E-Commerce}.
+	IoT devices and technologies are evolving at an exponential speed however, security and privacy concerns remain the main drawbacks
+	and obstacles of IoT Integration.
+
+
+
+
+
+	% if have a single appendix:
+	%\appendix[Proof of the Zonklar Equations]
+	% or
+	%\appendix  % for no appendix heading
+	% do not use \section anymore after \appendix, only \section*
+	% is possibly needed
+
+	% use appendices with more than one appendix
+	% then use \section to start each appendix
+	% you must declare a \section before using any
+	% \subsection or using \label (\appendices by itself
+	% starts a section numbered zero.)
+	%
+
+
+%	\appendices
+%	\section{Proof of the First Zonklar Equation}
+%	Appendix one text goes here.
+
+	% you can choose not to have a title for an appendix
+	% if you want by leaving the argument blank
+%	\section{}
+%	Appendix two text goes here.
+
+
+	% use section* for acknowledgment
+%	\ifCLASSOPTIONcompsoc
+	% The Computer Society usually uses the plural form
+%	\section*{Acknowledgments}
+%	\else
+	% regular IEEE prefers the singular form
+%	\section*{Acknowledgment}
+%	\fi
+
+
+	% The authors would like to thank...
+
+
+	% Can use something like this to put references on a page
+	% by themselves when using endfloat and the captionsoff option.
+	\ifCLASSOPTIONcaptionsoff
+	\newpage
+	\fi
+
+
+
+	% trigger a \newpage just before the given reference
+	% number - used to balance the columns on the last page
+	% adjust value as needed - may need to be readjusted if
+	% the document is modified later
+	%\IEEEtriggeratref{8}
+	% The "triggered" command can be changed if desired:
+	%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+	% references section
+
+	% can use a bibliography generated by BibTeX as a .bbl file
+	% BibTeX documentation can be easily obtained at:
+	% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+	% The IEEEtran BibTeX style support page is at:
+	% http://www.michaelshell.org/tex/ieeetran/bibtex/
+	\bibliographystyle{IEEEtran}
+	% argument is your BibTeX string definitions and bibliography database(s)
+	\bibliography{citiations.bib}
+	%
+	% <OR> manually copy in the resultant .bbl file
+	% set second argument of \begin to the number of references
+	% (used to reserve space for the reference number labels box)
+	%\begin{thebibliography}{1}
+	%
+	%	\bibitem{IEEEhowto:kopka}
+	%	H.~Kopka and P.~W. Daly, \emph{A Guide to {\LaTeX}}, 3rd~ed.\hskip 1em plus
+	%	0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+	%
+%	\end{thebibliography}
+
+	% biography section
+	%
+	% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+	% needed around the contents of the optional argument to biography to prevent
+	% the LaTeX parser from getting confused when it sees the complicated
+	% \includegraphics command within an optional argument. (You could create
+	% your own custom macro containing the \includegraphics command to make things
+	% simpler here.)
+	%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+	% or if you just want to reserve a space for a photo:
+
+%	\begin{IEEEbiography}{Michael Shell}
+%		Biography text here.
+%	\end{IEEEbiography}
+
+	% if you will not have a photo at all:
+	\begin{IEEEbiographynophoto}{Nima Poshtiban}
+		Bachelor of Computer Engineering\\
+		Email: poshtibannima@gmail.com
+	\end{IEEEbiographynophoto}
+
+	% insert where needed to balance the two columns on the last page with
+	% biographies
+	%\newpage
+
+%	\begin{IEEEbiographynophoto}{Jane Doe}
+	%	Biography text here.
+%	\end{IEEEbiographynophoto}
+
+	% You can push biographies down or up by placing
+	% a \vfill before or after them. The appropriate
+	% use of \vfill depends on what kind of text is
+	% on the last page and whether or not the columns
+	% are being equalized.
+
+	\vfill
+
+	% Can be used to pull up biographies so that the bottom of the last one
+	% is flush with the other column.
+	%\enlargethispage{-5in}
+
+
+
+	% that's all folks
+\end{document}
